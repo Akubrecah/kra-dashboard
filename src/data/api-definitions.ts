@@ -3,6 +3,9 @@ export interface ApiParameter {
   type: 'string' | 'number' | 'date';
   required: boolean;
   label: string;
+  placeholder?: string;
+  pattern?: string;
+  description?: string;
 }
 
 export interface ApiDefinition {
@@ -26,7 +29,15 @@ export const API_CATALOG: ApiDefinition[] = [
     method: 'POST',
     endpoint: '/checker/v1/pinbypin',
     parameters: [
-      { name: 'pin', type: 'string', required: true, label: 'KRA PIN' }
+      { 
+        name: 'pin', 
+        type: 'string', 
+        required: true, 
+        label: 'KRA PIN', 
+        placeholder: 'A000000000Z', 
+        pattern: '^[A-Z]\\d{9}[A-Z]$',
+        description: 'The 11-digit alphanumeric KRA PIN.'
+      }
     ]
   },
   {
@@ -37,7 +48,7 @@ export const API_CATALOG: ApiDefinition[] = [
     method: 'POST',
     endpoint: '/checker/v1/tcc',
     parameters: [
-      { name: 'certificateNumber', type: 'string', required: true, label: 'Certificate Number' }
+      { name: 'certificateNumber', type: 'string', required: true, label: 'Certificate Number', placeholder: 'KRA/TCC/...' }
     ]
   },
   {
@@ -99,11 +110,11 @@ export const API_CATALOG: ApiDefinition[] = [
     method: 'POST',
     endpoint: '/mpesa/stkpush/v1/processrequest',
     parameters: [
-      { name: 'BusinessShortCode', type: 'string', required: true, label: 'Business Shortcode' },
-      { name: 'PhoneNumber', type: 'string', required: true, label: 'Phone Number (254...)' },
-      { name: 'Amount', type: 'number', required: true, label: 'Amount' },
-      { name: 'AccountReference', type: 'string', required: true, label: 'Account Reference' },
-      { name: 'TransactionDesc', type: 'string', required: true, label: 'Transaction Description' }
+      { name: 'BusinessShortCode', type: 'string', required: true, label: 'Business Shortcode', placeholder: '174379' },
+      { name: 'PhoneNumber', type: 'string', required: true, label: 'Phone Number', placeholder: '2547XXXXXXXX', pattern: '^254\\d{9}$' },
+      { name: 'Amount', type: 'number', required: true, label: 'Amount', placeholder: '100' },
+      { name: 'AccountReference', type: 'string', required: true, label: 'Account Reference', placeholder: 'Invoice #123' },
+      { name: 'TransactionDesc', type: 'string', required: true, label: 'Transaction Description', placeholder: 'Payment for goods' }
     ]
   },
   // Safaricom - Customer to Business (C2B)
