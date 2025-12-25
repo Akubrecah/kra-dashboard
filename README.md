@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# eCitizen & Safaricom API Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A unified, modern dashboard for exploring and testing Government of Kenya (eCitizen) and Safaricom (Daraja) APIs. Built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Unified API Catalog**: Access 25+ APIs from KRA, eCitizen, and Safaricom in one place.
+-   **Simulation Mode**: Test APIs instantly with a built-in Mock Server (no credentials required).
+-   **Live Mode**: Switch to production ready mode to make real HTTP requests (requires API keys).
+-   **Dynamic Forms**: Input fields are automatically generated based on API parameters.
+-   **Premium UI**:
+    -   Dark mode aesthetic with glassmorphism effects.
+    -   Smooth animations using `framer-motion`.
+    -   Toast notifications via `sonner`.
+    -   Visual result cards for key transactions (e.g., STK Push success).
+-   **Request Console**: View raw JSON responses, latency, and status codes.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Frontend**: React 19, Vite
+-   **Styling**: Tailwind CSS v4
+-   **Animations**: Framer Motion
+-   **Icons**: Lucide React
+-   **Routing**: React Router DOM
+-   **Notifications**: Sonner
 
-## Expanding the ESLint configuration
+## 📦 Supported APIs
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### eCitizen / KRA
+-   **Checkers**: PIN Checker, TCC Checker, Import Certificate Checker, etc.
+-   **Payments**: VAT Withholding PRN, Rental Withholding.
+-   **Returns**: NIL Return Filing.
+-   **Customs**: Declaration Status.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Safaricom (Daraja)
+-   **M-PESA Express**: STK Push (Lipa Na M-PESA Online).
+-   **C2B**: Register URL, Validation, Confirmation.
+-   **B2C**: Business to Customer Payments.
+-   **Utility**: Transaction Status, Account Balance, Tax Remittance.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🏁 Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/Akubrecah/kra-dashboard.git
+    cd kra-dashboard
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4.  **Open in Browser**
+    Navigate to `http://localhost:5173`
+
+## 🔐 Configuration
+
+To use **Live Mode**:
+1.  Go to the **Settings** page in the dashboard.
+2.  Enter your **eCitizen/KRA Sandbox API Key** or **Bearer Token**.
+3.  For Safaricom APIs, currently the code structure supports a single key, but you can extend `apiClient.ts` to handle OAuth tokens for Daraja.
+
+## 📄 License
+
+MIT License
