@@ -44,6 +44,30 @@ export const invokeApi = async (
           generatedDate: new Date().toISOString()
         };
         break;
+      case 'mpesa-express':
+        mockData = {
+          MerchantRequestID: "12345-67890-" + Math.floor(Math.random() * 1000),
+          CheckoutRequestID: "ws_CO_" + Date.now() + Math.random().toString(36).substring(7),
+          ResponseCode: "0",
+          ResponseDescription: "Success. Request accepted for processing",
+          CustomerMessage: "Success. Request accepted for processing"
+        };
+        break;
+      case 'c2b-register':
+        mockData = {
+          OriginatorConversationID: "12345-67890-" + Math.floor(Math.random() * 1000),
+          ResponseCode: "0",
+          ResponseDescription: "Success"
+        };
+        break;
+      case 'b2c-payment':
+        mockData = {
+          ConversationID: "AG_20230101_" + Math.floor(Math.random() * 100000),
+          OriginatorConversationID: "23456-78901-" + Math.floor(Math.random() * 1000),
+          ResponseCode: "0",
+          ResponseDescription: "Accept the service request successfully."
+        };
+        break;
       default:
         mockData = { message: 'Success', ...params };
     }
