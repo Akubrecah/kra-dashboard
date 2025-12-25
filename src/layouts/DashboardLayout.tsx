@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
-import { LayoutDashboard, CheckCircle, CreditCard, FileText, Settings, Menu, X, Shield, Activity, Globe, Smartphone, ChevronRight } from 'lucide-react';
+import { LayoutDashboard, CheckCircle, CreditCard, FileText, Settings, Menu, X, Shield, Activity, Smartphone, Zap } from 'lucide-react';
 import { API_CATALOG } from '../data/api-definitions';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -23,41 +23,35 @@ const DashboardLayout: React.FC = () => {
 
   const getCategoryColor = (category: string) => {
     switch(category) {
-      case 'Checkers': return 'text-blue-400 bg-blue-500/10 border-blue-500/20';
-      case 'Payments': return 'text-purple-400 bg-purple-500/10 border-purple-500/20';
-      case 'Tax Returns': return 'text-amber-400 bg-amber-500/10 border-amber-500/20';
-      case 'M-PESA': return 'text-green-400 bg-green-500/10 border-green-500/20';
-      default: return 'text-teal-400 bg-teal-500/10 border-teal-500/20';
+      case 'Checkers': return 'text-blue-600 bg-blue-50';
+      case 'Payments': return 'text-purple-600 bg-purple-50';
+      case 'Tax Returns': return 'text-amber-600 bg-amber-50';
+      case 'M-PESA': return 'text-green-600 bg-green-50';
+      default: return 'text-slate-600 bg-slate-50';
     }
   };
 
   return (
-    <div className="flex h-screen overflow-hidden font-sans antialiased relative">
-      {/* Animated Background */}
-      <div className="gradient-orbs" />
-      <div className="absolute inset-0 animated-grid-bg" />
-      
+    <div className="flex h-screen overflow-hidden font-sans antialiased bg-white">
       {/* Sidebar */}
       <motion.aside 
-        initial={{ x: -280 }}
-        animate={{ x: isSidebarOpen ? 0 : -280 }}
+        initial={{ x: -300 }}
+        animate={{ x: isSidebarOpen ? 0 : -300 }}
         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-        className="fixed inset-y-0 left-0 z-50 w-72 glass-card border-r border-white/5 lg:static flex flex-col"
-        style={{ background: 'rgba(10, 10, 15, 0.95)' }}
+        className="fixed inset-y-0 left-0 z-50 w-72 bg-slate-50 border-r border-slate-100 lg:static flex flex-col"
       >
         {/* Logo */}
-        <div className="flex items-center justify-between h-20 px-6 border-b border-white/5">
+        <div className="flex items-center justify-between h-20 px-6 bg-white border-b border-slate-100">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg glow-blue">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ff4d6d] to-[#ff758f] flex items-center justify-center shadow-lg shadow-red-200">
               <Shield className="w-5 h-5 text-white" />
             </div>
             <div>
-              <span className="text-lg font-bold tracking-tight text-white">GovAPI</span>
-              <span className="text-lg font-bold gradient-text">.ke</span>
-              <p className="text-[10px] text-white/40 uppercase tracking-widest">Developer Hub</p>
+              <span className="text-xl font-bold text-slate-900">GovAPI</span>
+              <span className="text-xl font-bold text-[#ff4d6d]">.ke</span>
             </div>
           </div>
-          <button onClick={toggleSidebar} className="lg:hidden text-white/40 hover:text-white transition-colors">
+          <button onClick={toggleSidebar} className="lg:hidden text-slate-400 hover:text-slate-600 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -70,34 +64,32 @@ const DashboardLayout: React.FC = () => {
               to="/" 
               end
               className={({ isActive }) => clsx(
-                "sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all group",
+                "flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all group",
                 isActive 
-                  ? "active bg-white/5 text-white" 
-                  : "text-white/50 hover:bg-white/5 hover:text-white"
+                  ? "bg-white text-slate-900 shadow-sm" 
+                  : "text-slate-500 hover:bg-white/50 hover:text-slate-700"
               )}
             >
-              <LayoutDashboard className="w-5 h-5 mr-3 group-hover:text-blue-400 transition-colors" />
+              <LayoutDashboard className="w-5 h-5 mr-3 text-slate-400 group-hover:text-[#ff4d6d]" />
               Dashboard
-              <ChevronRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
             </NavLink>
             <NavLink 
               to="/settings" 
               className={({ isActive }) => clsx(
-                "sidebar-link flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all group",
+                "flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all group",
                 isActive 
-                  ? "active bg-white/5 text-white" 
-                  : "text-white/50 hover:bg-white/5 hover:text-white"
+                  ? "bg-white text-slate-900 shadow-sm" 
+                  : "text-slate-500 hover:bg-white/50 hover:text-slate-700"
               )}
             >
-              <Settings className="w-5 h-5 mr-3 group-hover:text-purple-400 transition-colors" />
+              <Settings className="w-5 h-5 mr-3 text-slate-400 group-hover:text-[#ff4d6d]" />
               Settings
-              <ChevronRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
             </NavLink>
           </div>
 
           {/* API List */}
           <div>
-            <h3 className="px-4 text-[10px] font-semibold text-white/30 uppercase tracking-[0.2em] mb-3">
+            <h3 className="px-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
               API Catalog
             </h3>
             <div className="space-y-1">
@@ -111,14 +103,14 @@ const DashboardLayout: React.FC = () => {
                   <NavLink
                     to={`/api/${api.id}`}
                     className={({ isActive }) => clsx(
-                      "sidebar-link flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all group",
+                      "flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all group",
                       isActive 
-                        ? "active bg-white/5 text-white" 
-                        : "text-white/40 hover:bg-white/5 hover:text-white"
+                        ? "bg-white text-slate-900 shadow-sm" 
+                        : "text-slate-500 hover:bg-white/50 hover:text-slate-700"
                     )}
                   >
                     <span className={clsx(
-                      "w-7 h-7 rounded-lg flex items-center justify-center mr-3 border transition-colors",
+                      "w-8 h-8 rounded-lg flex items-center justify-center mr-3",
                       getCategoryColor(api.category)
                     )}>
                       {getApiIcon(api.category)}
@@ -132,67 +124,76 @@ const DashboardLayout: React.FC = () => {
         </nav>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-white/5">
-          <div className="glass-card p-4 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10">
-            <p className="text-xs text-white/60 mb-2">Environment</p>
-            <div className="flex items-center justify-between">
-              <span className={clsx(
-                "text-sm font-semibold",
-                isMock ? "text-green-400" : "text-red-400"
-              )}>
-                {isMock ? '🧪 Sandbox' : '🔴 Production'}
-              </span>
+        <div className="p-4 border-t border-slate-100">
+          <div className="bg-gradient-to-br from-[#ff4d6d]/10 to-[#ff758f]/10 p-4 rounded-xl border border-[#ff4d6d]/10">
+            <div className="flex items-center space-x-2 mb-2">
+              <Zap className="w-4 h-4 text-[#ff4d6d]" />
+              <span className="text-xs font-semibold text-slate-600">Environment</span>
             </div>
+            <span className={clsx(
+              "text-sm font-bold",
+              isMock ? "text-green-600" : "text-red-500"
+            )}>
+              {isMock ? '🧪 Sandbox Mode' : '🔴 Production'}
+            </span>
           </div>
         </div>
       </motion.aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0 relative z-10">
+      <div className="flex-1 flex flex-col min-w-0 bg-white">
         {/* Top Header */}
-        <header className="sticky top-0 z-40 flex items-center justify-between h-20 px-6 glass-card border-b border-white/5 backdrop-blur-xl"
-          style={{ background: 'rgba(10, 10, 15, 0.8)' }}
-        >
+        <header className="sticky top-0 z-40 flex items-center justify-between h-20 px-6 bg-white/80 backdrop-blur-xl border-b border-slate-100">
           <button 
             onClick={toggleSidebar} 
-            className="lg:hidden w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all"
+            className="lg:hidden w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-all"
           >
             <Menu className="w-5 h-5" />
           </button>
           
-          <div className="flex items-center ml-auto space-x-4">
+          {/* Center Nav Links */}
+          <nav className="hidden md:flex items-center space-x-8 mx-auto">
+            <NavLink to="/" className="nav-link">Home</NavLink>
+            <NavLink to="/api/pin-checker" className="nav-link">Services</NavLink>
+            <NavLink to="/settings" className="nav-link">Settings</NavLink>
+          </nav>
+          
+          <div className="flex items-center space-x-3">
             {/* Environment Toggle */}
-            <div className="flex items-center p-1 rounded-xl bg-black/40 border border-white/5">
+            <div className="flex items-center p-1 rounded-full bg-slate-100">
               <button
                 onClick={() => setIsMock(true)}
                 className={clsx(
-                  "px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center space-x-2",
+                  "px-4 py-2 text-xs font-semibold rounded-full transition-all",
                   isMock 
-                    ? "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 shadow-lg" 
-                    : "text-white/40 hover:text-white/60"
+                    ? "bg-white text-slate-900 shadow-sm" 
+                    : "text-slate-500 hover:text-slate-700"
                 )}
               >
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span>MOCK</span>
+                Mock
               </button>
               <button
                 onClick={() => setIsMock(false)}
                 className={clsx(
-                  "px-4 py-2 text-xs font-semibold rounded-lg transition-all flex items-center space-x-2",
+                  "px-4 py-2 text-xs font-semibold rounded-full transition-all",
                   !isMock 
-                    ? "bg-gradient-to-r from-red-500/20 to-orange-500/20 text-red-400 shadow-lg" 
-                    : "text-white/40 hover:text-white/60"
+                    ? "bg-white text-red-500 shadow-sm" 
+                    : "text-slate-500 hover:text-slate-700"
                 )}
               >
-                <Globe className="w-3 h-3" />
-                <span>LIVE</span>
+                Live
               </button>
             </div>
+            
+            {/* CTA Button */}
+            <button className="btn-coral hidden sm:block">
+              Get started
+            </button>
           </div>
         </header>
         
         {/* Page Content */}
-        <main className="flex-1 overflow-auto p-8 custom-scrollbar">
+        <main className="flex-1 overflow-auto p-8 custom-scrollbar bg-white">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -214,7 +215,7 @@ const DashboardLayout: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            className="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
             onClick={toggleSidebar}
           />
         )}
