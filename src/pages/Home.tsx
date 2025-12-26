@@ -1,215 +1,125 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Activity, DollarSign, Bitcoin, Apple, ArrowRight } from 'lucide-react';
+import { ArrowRight, Activity, Terminal, Shield, Cpu, Globe } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { API_CATALOG } from '../data/api-definitions';
-import featureConnectivity from '../assets/feature_connectivity.png';
-import featureSecurity from '../assets/feature_security.png';
-
-// Coin Components mimicking the Ballo style - Defined OUTSIDE the component
-const BlueCoin = ({ delay }: { delay: number }) => (
-  <motion.div 
-    initial={{ y: 200, opacity: 0, rotateZ: -20 }}
-    animate={{ y: 0, opacity: 1, rotateZ: -15 }}
-    transition={{ 
-      delay, 
-      type: "spring", 
-      stiffness: 70, 
-      damping: 15,
-      y: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      } 
-    }}
-    className="landing-coin coin-blue"
-    style={{ top: '10%' }}
-  >
-    <div className="coin-inner">
-      <DollarSign className="coin-icon" />
-    </div>
-    <div className="coin-edge"></div>
-  </motion.div>
-);
-
-const GoldCoin = ({ delay }: { delay: number }) => (
-  <motion.div 
-    initial={{ y: 200, opacity: 0, rotateZ: 10 }}
-    animate={{ y: 0, opacity: 1, rotateZ: 10 }}
-    transition={{ 
-      delay, 
-      type: "spring", 
-      stiffness: 60,
-      damping: 12,
-      y: {
-        duration: 2.5,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      }
-    }}
-    className="landing-coin coin-gold"
-    style={{ bottom: '15%' }}
-  >
-    <div className="coin-inner">
-      <Activity className="coin-icon" />
-    </div>
-  </motion.div>
-);
-
-const PinkCoin = ({ delay }: { delay: number }) => (
-  <motion.div 
-    initial={{ y: 200, opacity: 0, rotateZ: 25 }}
-    animate={{ y: 0, opacity: 1, rotateZ: 25 }}
-    transition={{ 
-      delay, 
-      type: "spring", 
-      stiffness: 80,
-      damping: 18,
-      y: {
-        duration: 1.8,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      }
-    }}
-    className="landing-coin coin-pink"
-    style={{ top: '20%' }}
-  >
-    <div className="coin-inner">
-      <Bitcoin className="coin-icon" />
-    </div>
-  </motion.div>
-);
-
-const SilverCoin = ({ delay }: { delay: number }) => (
-  <motion.div 
-    initial={{ y: 200, opacity: 0, rotateZ: -5 }}
-    animate={{ y: 0, opacity: 1, rotateZ: -5 }}
-    transition={{ 
-      delay, 
-      type: "spring", 
-      stiffness: 60,
-      damping: 20,
-      y: {
-        duration: 3,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      } 
-    }}
-    className="landing-coin coin-silver"
-    style={{ bottom: '25%' }}
-  >
-    <div className="coin-inner">
-      <Apple className="coin-icon" />
-    </div>
-  </motion.div>
-);
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
 
+  const terminalData = React.useMemo(() => ({
+    logs: Array.from({length: 20}).map((_, i) => ({
+      id: i,
+      hex: Math.random().toString(16).substr(2, 8).toUpperCase()
+    })),
+    traces: Array.from({length: 15}).map((_, i) => ({
+      id: i,
+      bin: Math.random().toString(2).substr(2, 16)
+    }))
+  }), []);
+
   return (
-    <div className="landing-page">
-      {/* Hero Text */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="landing-hero"
-      >
-        <h1 className="landing-title">
-          WHERE<br />
-          DEVELOPERS<br />
-          BUILD
-        </h1>
-        <p className="landing-subtitle">
-          Payments? Identity? Taxes? It doesn't matter. You can<br />
-          integrate whatever, whenever, wherever. You do you.
-        </p>
+    <div className="min-h-screen bg-[#020617] text-[#e2e8f0] font-mono relative overflow-hidden">
+      {/* Background Grid Animation */}
+      <div className="absolute inset-0 z-0 bg-cyber-grid pointer-events-none opacity-20"></div>
 
-        <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="btn-coral landing-cta"
-        >
-          Get started
-        </motion.button>
-      </motion.div>
-
-      {/* 3D Track Visual */}
-      <div className="landing-track-container">
-        {/* The Curved Track */}
-        <div className="track-curve">
-           <div className="track-grid"></div>
-        </div>
-
-        {/* Floating Coins */}
-        <BlueCoin delay={0.2} />
-        <GoldCoin delay={0.4} />
-        <PinkCoin delay={0.6} />
-        <SilverCoin delay={0.8} />
-
-      </div>
-
-      {/* Features Section - Zig Zag Layout */}
-      <section className="features-section">
-        <div className="container">
-           {/* Feature 1: Connectivity */}
+      <div className="relative z-10 container mx-auto px-6 lg:px-20 pt-32 pb-20">
+        
+        {/* Hero Section */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-32">
            <motion.div 
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.6 }}
-             className="feature-row"
+             initial={{ opacity: 0, x: -30 }}
+             animate={{ opacity: 1, x: 0 }}
+             transition={{ duration: 0.8 }}
            >
-              <div className="feature-text">
-                <h3 className="feature-title">Seamless <span className="gradient-text-coral">Connectivity</span></h3>
-                <p className="feature-desc">
-                  Connect your applications to government services with unprecedented ease. 
-                  Our modern REST APIs are designed for developers who build the future.
-                </p>
-              </div>
-              <div className="feature-image-wrapper">
-                <img src={featureConnectivity} alt="API Connectivity" className="feature-img floating-animation" />
-              </div>
+             <div className="inline-flex items-center px-3 py-1 mb-6 border border-[#00ff41] bg-[#00ff41]/10 text-[#00ff41] text-xs font-bold tracking-widest uppercase">
+               <span className="w-2 h-2 bg-[#00ff41] rounded-full animate-pulse mr-2"></span>
+               System Status: Online
+             </div>
+             
+             <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 uppercase tracking-tighter leading-none glow-text">
+               Global<br />
+               <span className="text-[#00ff41]">Secure</span><br />
+               Protocol
+             </h1>
+             
+             <p className="text-xl text-[#94a3b8] mb-8 leading-relaxed border-l-2 border-[#008f11] pl-6">
+               &gt; INITIALIZING SECURE HANDSHAKE...<br />
+               &gt; ESTABLISHING ENCRYPTED TUNNEL...<br />
+               &gt; ACCESS GRANTED.
+             </p>
+
+             <motion.button 
+               whileHover={{ scale: 1.05 }}
+               whileTap={{ scale: 0.95 }}
+               onClick={() => navigate('/api/mpesa-express')}
+               className="btn-cyber text-lg"
+             >
+               <span className="mr-2">&gt;</span> INITIATE CONSOLE
+             </motion.button>
            </motion.div>
 
-           {/* Feature 2: Security */}
            <motion.div 
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.6, delay: 0.2 }}
-             className="feature-row reverse"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative flex justify-center items-center h-[400px] border border-[#008f11]/30 bg-[#0f172a]/30 rounded-lg overflow-hidden"
            >
-              <div className="feature-text">
-                <h3 className="feature-title">Bank-Grade <span className="gradient-text-coral">Security</span></h3>
-                <p className="feature-desc">
-                  Built on a fortress of trust. We handle millions of sensitive transactions 
-                  using state-of-the-art encryption and fraud detection protocols.
-                </p>
+              {/* Fake Terminal Visual */}
+              <div className="absolute inset-4 font-mono text-xs text-[#00ff41]/50 overflow-hidden leading-tight opacity-50">
+                 {terminalData.logs.map((line) => (
+                   <div key={line.id}>0x7F{line.hex} :: ACCESSING NODE {line.id}</div>
+                 ))}
+                 <br />
+                 {terminalData.traces.map((trace) => (
+                   <div key={trace.id} className="text-[#00f3ff]/50">PACKET_TRACE :: {trace.bin}</div>
+                 ))}
               </div>
-              <div className="feature-image-wrapper">
-                <img src={featureSecurity} alt="Secure Shield" className="feature-img floating-animation-delay" />
-              </div>
+              <Globe className="w-48 h-48 text-[#00ff41] relative z-10 animate-pulse drop-shadow-[0_0_30px_rgba(0,255,65,0.4)]" strokeWidth={0.5} />
            </motion.div>
         </div>
-      </section>
 
-      {/* API Catalog Section - Restored and Styled */}
-      <section className="api-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Explore our APIs</h2>
-            <p className="section-subtitle">
-              Comprehensive tools for payments, identity, and compliance.
-            </p>
+
+        {/* Capabilities Section */}
+        <section className="mb-32">
+           <div className="flex items-end justify-between border-b border-[#008f11] pb-4 mb-12">
+             <h2 className="text-3xl font-bold text-white uppercase tracking-widest flex items-center">
+               <Shield className="w-8 h-8 mr-4 text-[#00ff41]" />
+               Capabilities
+             </h2>
+             <span className="text-xs text-[#008f11]">SYS.VER.2.0.4</span>
+           </div>
+
+           <div className="grid md:grid-cols-2 gap-8">
+              <div className="cyber-panel p-8">
+                 <Cpu className="w-12 h-12 text-[#00f3ff] mb-6" />
+                 <h3 className="text-xl font-bold text-white mb-4 uppercase">Neural Connectivity</h3>
+                 <p className="text-[#94a3b8] leading-relaxed">
+                   Direct integration with government mainframes. Zero latency. 
+                   Real-time synchronization with tax authority databases.
+                 </p>
+              </div>
+              <div className="cyber-panel p-8">
+                 <Terminal className="w-12 h-12 text-[#ff003c] mb-6" />
+                 <h3 className="text-xl font-bold text-white mb-4 uppercase">Threat Mitigation</h3>
+                 <p className="text-[#94a3b8] leading-relaxed">
+                   Military-grade encryption on all transaction layers. 
+                   Automatic fraud detection algorithms active.
+                 </p>
+              </div>
+           </div>
+        </section>
+
+        {/* API Catalog Section */}
+        <section>
+          <div className="flex items-center mb-12">
+             <div className="w-2 h-8 bg-[#00ff41] mr-4"></div>
+             <h2 className="text-3xl font-bold text-white uppercase tracking-widest">
+               Authorized Protocols
+             </h2>
           </div>
 
-          <div className="api-grid">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {API_CATALOG.map((api, index) => (
               <motion.div
                 key={api.id}
@@ -217,28 +127,34 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="api-card"
                 onClick={() => navigate(`/api/${api.id}`)}
+                className="group relative cursor-pointer"
               >
-                <div className="api-card-content">
-                  <div className="api-icon-wrapper">
-                    <Activity className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="api-card-title">{api.name}</h3>
-                  <p className="api-card-desc">{api.description}</p>
-                  
-                  <div className="api-card-footer">
-                    <span className="api-link">
-                      View Details <ArrowRight className="w-4 h-4 ml-1" />
-                    </span>
-                  </div>
+                <div className="absolute inset-0 bg-[#00ff41]/5 transform skew-x-[-10deg] group-hover:bg-[#00ff41]/10 transition-colors"></div>
+                <div className="relative border border-[#008f11] p-6 hover:border-[#00ff41] transition-colors h-full flex flex-col">
+                   <div className="flex justify-between items-start mb-6">
+                     <Activity className="w-8 h-8 text-[#008f11] group-hover:text-[#00ff41] transition-colors" />
+                     <span className="text-[10px] font-bold border border-[#008f11] px-2 py-1 text-[#008f11] uppercase group-hover:text-[#00ff41] group-hover:border-[#00ff41]">
+                       ID: {api.id.substring(0, 4).toUpperCase()}
+                     </span>
+                   </div>
+                   
+                   <h3 className="text-xl font-bold text-white mb-2 uppercase group-hover:text-[#00ff41] transition-colors">
+                     {api.name}
+                   </h3>
+                   <p className="text-sm text-[#94a3b8] mb-6 flex-grow font-mono">
+                     {api.description}
+                   </p>
+                   
+                   <div className="flex items-center justify-end text-[#00ff41] text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                     Access Node <ArrowRight className="w-4 h-4 ml-2" />
+                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };
