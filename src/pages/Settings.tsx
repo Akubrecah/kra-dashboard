@@ -13,69 +13,72 @@ const Settings: React.FC = () => {
 
   const handleSave = () => {
     localStorage.setItem('kra_api_key', apiKey);
-    toast.success('Configuration saved securely');
+    toast.success('Configuration saved successfully');
   };
 
   return (
-    <div className="max-w-2xl mx-auto pt-10">
+    <div className="max-w-2xl mx-auto pt-10 font-sans">
       <Toaster position="bottom-right" theme="dark" />
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8 text-center"
+        className="mb-8"
       >
-        <h2 className="text-3xl font-extrabold text-slate-900 mb-2">Security & Connections</h2>
-        <p className="text-slate-500 font-medium">Manage your API credentials for live environments.</p>
+        <h2 className="text-3xl font-bold text-white mb-2">API Configuration</h2>
+        <p className="text-slate-400">Manage your connection keys for the live environment.</p>
       </motion.div>
       
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.1 }}
-        className="bg-white border border-slate-200 p-8 rounded-[2rem] shadow-xl relative overflow-hidden"
+        className="glass-panel p-8 relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
-          <Shield className="w-48 h-48 text-[#ff4d6d]" />
+          <Shield className="w-48 h-48 text-blue-500" />
         </div>
 
         <div className="relative z-10">
           <div className="flex items-center mb-8">
-            <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center mr-4 border border-slate-100 shadow-sm">
-              <Key className="w-6 h-6 text-[#ff4d6d]" />
+            <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mr-4 border border-blue-500/20 shadow-sm">
+              <Key className="w-6 h-6 text-blue-500" />
             </div>
             <div>
-               <h3 className="text-xl font-bold text-slate-900">eCitizen / KRA Sandbox</h3>
-               <p className="text-sm text-slate-500 font-medium">Live environment authentication</p>
+               <h3 className="text-xl font-bold text-white">eCitizen Credentials</h3>
+               <p className="text-sm text-slate-400">Production & Sandbox Keys</p>
             </div>
           </div>
 
-          <div className="space-y-4 mb-8">
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide">
-              Bearer Token / API Key
-            </label>
-            <div className="relative group">
-              <Lock className="absolute left-4 top-3.5 w-4 h-4 text-slate-400 group-focus-within:text-[#ff4d6d] transition-colors" />
-              <input
-                type="password"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                placeholder="sk_live_..."
-                className="input-modern w-full pl-11"
-              />
+          <div className="space-y-6 mb-8">
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+                Bearer Token
+              </label>
+              <div className="relative group">
+                <Lock className="absolute left-4 top-3.5 w-4 h-4 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
+                <input
+                  type="password"
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  placeholder="sk_live_..."
+                  className="input-modern pl-11"
+                />
+              </div>
             </div>
-            <p className="text-xs text-slate-500 flex items-center bg-slate-50 p-3 rounded-lg border border-slate-100">
-              <Shield className="w-3 h-3 mr-2 text-green-500" />
-              Credentials are stored locally in your browser and never sent to our servers.
+            
+            <p className="text-xs text-slate-500 flex items-center bg-slate-800/50 p-4 rounded-lg border border-slate-700/50">
+              <Shield className="w-3 h-3 mr-2 text-emerald-500" />
+              Keys are encrypted and stored locally. We do not transmit them to our servers.
             </p>
           </div>
           
           <button
             onClick={handleSave}
-            className="w-full btn-coral flex items-center justify-center space-x-2 py-4 rounded-full shadow-lg"
+            className="w-full btn-primary py-4 rounded-xl flex items-center justify-center space-x-2"
           >
             <Save className="w-5 h-5" />
-            <span>Save Configuration</span>
+            <span>Save Changes</span>
           </button>
         </div>
       </motion.div>

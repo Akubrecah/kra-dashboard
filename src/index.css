@@ -1,31 +1,83 @@
-/* --- Cyber/NSA Theme Setup --- */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100..800&display=swap');
+/* --- Landed Theme (HTML5 UP Inspired) --- */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --color-landed-bg: #1c1d26;       /* Deep charcoal */
+  --color-landed-card: #272933;     /* Lighter charcoal */
+  --color-landed-accent: #e44c65;   /* The signature Landed pink/red */
+  --color-landed-accent-hover: #fa5770;
+  
+  --color-slate-850: #272933; /* Mapping to Landed Card */
+  --color-slate-900: #1c1d26; /* Mapping to Landed BG */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --color-cyber-green: #00ff41;
-  --color-cyber-dark-green: #008f11;
-  --color-cyber-cyan: #00f3ff;
-  --color-cyber-alert: #ff003c;
-  --color-cyber-bg: #020617;
-  --color-cyber-panel: #0f172a;
-  
-  --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
-  
-  --bg-primary: var(--color-cyber-bg);
-  --text-main: #e2e8f0;
-  --text-muted: #94a3b8;
+  --bg-app: var(--color-landed-bg);
+  --bg-card: var(--color-landed-card);
+  --primary-accent: var(--color-landed-accent);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-mono);
-  background-color: var(--bg-primary);
-  color: var(--text-main);
-  overflow-x: hidden;
-  /* Scanline effect base */
-  background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  background-size: 100% 2px, 3px 100%;
+  background-color: var(--color-landed-bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 300; /* Landed uses lighter weights */
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 100; /* Distinctive thin headers */
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+strong {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* Button - Landed Style */
+.btn-primary {
+  @apply inline-block px-8 py-4 rounded-full font-medium text-white transition-all duration-300;
+  background-color: var(--color-landed-accent);
+  box-shadow: inset 0 0 0 0 rgba(255,255,255,0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-landed-accent-hover);
+  box-shadow: inset 0 0 0 2em rgba(255,255,255,0.1);
+}
+
+.btn-secondary {
+  @apply inline-block px-8 py-4 rounded-full font-medium text-white transition-all duration-300;
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255,255,255,0.05);
+  border-color: #ffffff;
+}
+
+/* Inputs */
+.input-modern {
+  @apply w-full px-4 py-3 rounded-lg bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-white focus:border-landed-accent focus:outline-none transition-colors;
+}
+
+/* Glass/Card Panel alignment */
+.glass-panel {
+  background-color: var(--color-landed-card);
+  border: none;
+  border-radius: 4px; /* Landed is sharper */
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 /* Scrollbar */
@@ -33,146 +85,12 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: var(--color-landed-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border: 1px solid var(--color-cyber-dark-green);
+  background: #3a3c4a;
+  border-radius: 4px;
 }
-
-h1, h2, h3, h4, button {
-  margin: 0;
-  font-family: var(--font-mono);
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* --- Utilities --- */
-.text-cyber-green { color: var(--color-cyber-green); }
-.text-cyber-cyan { color: var(--color-cyber-cyan); }
-.text-cyber-alert { color: var(--color-cyber-alert); }
-
-.bg-cyber-grid {
-  background-image: 
-    linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.border-cyber {
-  border: 1px solid var(--color-cyber-dark-green);
-}
-
-.glow-text {
-  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
-}
-
-/* --- Components --- */
-
-/* Buttons */
-.btn-cyber {
-  background: rgba(0, 255, 65, 0.1);
-  color: var(--color-cyber-green);
-  border: 1px solid var(--color-cyber-green);
-  padding: 12px 24px;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.2s;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-cyber:hover {
-  background: var(--color-cyber-green);
-  color: black;
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-}
-
-.btn-cyber-alert {
-  background: rgba(255, 0, 60, 0.1);
-  color: var(--color-cyber-alert);
-  border: 1px solid var(--color-cyber-alert);
-}
-.btn-cyber-alert:hover {
-  background: var(--color-cyber-alert);
-  color: white;
-  box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
-}
-
-
-/* Inputs */
-.input-cyber {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid #1e293b;
-  color: var(--color-cyber-green);
-  font-family: var(--font-mono);
-  padding: 12px;
-  width: 100%;
-  outline: none;
-}
-.input-cyber:focus {
-  border-color: var(--color-cyber-green);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
-}
-
-/* Panels */
-.cyber-panel {
-  background: rgba(2, 6, 23, 0.7);
-  border: 1px solid rgba(0, 255, 65, 0.2);
-  backdrop-filter: blur(8px);
-  position: relative;
-}
-.cyber-panel::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 10px; height: 10px;
-  border-top: 2px solid var(--color-cyber-green);
-  border-left: 2px solid var(--color-cyber-green);
-}
-.cyber-panel::after {
-  content: '';
-  position: absolute;
-  bottom: 0; right: 0; width: 10px; height: 10px;
-  border-bottom: 2px solid var(--color-cyber-green);
-  border-right: 2px solid var(--color-cyber-green);
-}
-
-
-/* --- Landing Page Overrides --- */
-.landing-header {
-  border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-  background: rgba(2, 6, 23, 0.95);
-}
-
-/* Reset conflicting Ballo styles */
-.landing-title, .landing-subtitle, .landing-track-container, .feature-img {
-  /* We will reimplement these in the Home.tsx component structure to avoid class conflicts,
-     or override them here if we keep the class names */
-}
-.landing-title {
-  font-family: var(--font-mono);
-  color: white;
-  text-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
-}
-
-/* Animations */
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
-}
-.scanline-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 65, 0.02) 51%);
-  background-size: 100% 4px;
-  z-index: 9999;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-landed-accent);
 }

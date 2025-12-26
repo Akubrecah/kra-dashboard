@@ -1,42 +1,42 @@
-# eCitizen & Safaricom API Dashboard
+# Akubrecah Entertainment Developer Console
 
-A unified, modern dashboard for exploring and testing Government of Kenya (eCitizen) and Safaricom (Daraja) APIs. Built with React, TypeScript, Tailwind CSS, and Framer Motion.
+A next-generation, unified API dashboard for exploring and testing Government of Kenya (eCitizen) and Safaricom (Daraja) services. Reimagined with the sleek "Landed" design aesthetic.
 
-## 🚀 Features
+![Akubrecah Entertainment](https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop)
 
--   **Unified API Catalog**: Access 25+ APIs from KRA, eCitizen, and Safaricom in one place.
--   **Simulation Mode**: Test APIs instantly with a built-in Mock Server (no credentials required).
--   **Live Mode**: Switch to production ready mode to make real HTTP requests (requires API keys).
--   **Dynamic Forms**: Input fields are automatically generated based on API parameters.
--   **Premium UI**:
-    -   Dark mode aesthetic with glassmorphism effects.
-    -   Smooth animations using `framer-motion`.
-    -   Toast notifications via `sonner`.
-    -   Visual result cards for key transactions (e.g., STK Push success).
--   **Request Console**: View raw JSON responses, latency, and status codes.
+## 🚀 The Future Has Landed
 
-## 🛠️ Tech Stack
+Akubrecah Entertainment provides a unified developer platform for all interactive fiscal and utility services. Integrate real-time PIN validation, automatic tax returns, and M-PESA payments directly into your application with a premium developer experience.
 
--   **Frontend**: React 19, Vite
--   **Styling**: Tailwind CSS v4
--   **Animations**: Framer Motion
--   **Icons**: Lucide React
--   **Routing**: React Router DOM
--   **Notifications**: Sonner
+### Key Features
 
-## 📦 Supported APIs
+-   **Unified API Catalog**: Access 25+ APIs from KRA and Safaricom in one console.
+-   **"Landed" Aesthetic**: A premium deep charcoal (`#1c1d26`) and pink-accent (`#e44c65`) theme inspired by HTML5 UP.
+-   **Simulation Mode**: Zero-config mock server for instant testing.
+-   **Live Production Mode**: Switch seamlessy to live endpoints.
+-   **Visualizers**:
+    -   **M-PESA Express**: Simulated mobile phone interface for STK Push.
+    -   **PIN Checker**: Verified identity card visualization.
 
-### eCitizen / KRA
--   **Checkers**: PIN Checker, TCC Checker, Import Certificate Checker, etc.
--   **Payments**: VAT Withholding PRN, Rental Withholding.
--   **Returns**: NIL Return Filing.
--   **Customs**: Declaration Status.
+## 🛠️ Stack
 
-### Safaricom (Daraja)
--   **M-PESA Express**: STK Push (Lipa Na M-PESA Online).
--   **C2B**: Register URL, Validation, Confirmation.
--   **B2C**: Business to Customer Payments.
--   **Utility**: Transaction Status, Account Balance, Tax Remittance.
+-   **Frontend**: React 19, TypeScript, Vite
+-   **Design**: Tailwind CSS v4 (Landed Theme)
+-   **Routing**: React Router v7
+-   **Motion**: Framer Motion
+
+## 📦 API Modules
+
+### M-PESA (Safaricom)
+-   **M-PESA Express (STK Push)**: Trigger instant payment prompts.
+-   **C2B Register**: Automated payment confirmation URLs.
+-   **B2C**: Bulk payouts/salary processing.
+
+### KRA (eCitizen)
+-   **PIN Checker**: KYC and identity validation.
+-   **Tax Compliance**: Real-time TCC verification.
+-   **Returns**: Automated NIL return filing.
+-   **Customs**: Import entry status tracking.
 
 ## 🏁 Getting Started
 
@@ -51,21 +51,17 @@ A unified, modern dashboard for exploring and testing Government of Kenya (eCiti
     npm install
     ```
 
-3.  **Run the development server**
+3.  **Run the console**
     ```bash
     npm run dev
     ```
 
-4.  **Open in Browser**
-    Navigate to `http://localhost:5173`
-
 ## 🔐 Configuration
 
-To use **Live Mode**:
-1.  Go to the **Settings** page in the dashboard.
-2.  Enter your **eCitizen/KRA Sandbox API Key** or **Bearer Token**.
-3.  For Safaricom APIs, currently the code structure supports a single key, but you can extend `apiClient.ts` to handle OAuth tokens for Daraja.
+Access the **Settings** page to toggle between Mock and Live modes.
+-   MOCK MODE: No keys required. Returns simulated success responses.
+-   LIVE MODE: Requires valid Consumer Key/Secret or Bearer Token.
 
 ## 📄 License
 
-MIT License
+MIT License. Designed by Akubrecah Entertainment.
